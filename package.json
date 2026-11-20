@@ -4,7 +4,8 @@
   "type": "module",
   "workspaces": [
     "sdk",
-    "agent"
+    "agent",
+    "web"
   ],
   "scripts": {
     "typecheck": "npm run typecheck -w sdk && npm run typecheck -w agent",
