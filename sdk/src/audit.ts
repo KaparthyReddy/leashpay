@@ -1,5 +1,6 @@
 import { parseEventLogs, type Hash } from "viem";
 import { vaultAbi } from "./abi";
+import { AEVUM } from "./chain";
 import type { LeashClient } from "./client";
 
 export type AuditKind =
@@ -33,8 +34,11 @@ export async function getAuditTrail(
   client: LeashClient,
   fromBlock: bigint,
   toBlock?: bigint,
-  chunkSize = 5000n,
+  chunkSize: bigint = AEVUM.maxLogRange,
 ): Promise<AuditEvent[]> {
+  if (chunkSize < 1n || chunkSize > AEVUM.maxLogRange) {
+    throw new Error(`chunkSize must be between 1 and ${AEVUM.maxLogRange}`);
+  }
   const end = toBlock ?? (await client.publicClient.getBlockNumber());
   const events: AuditEvent[] = [];
 

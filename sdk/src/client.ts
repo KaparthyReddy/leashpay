@@ -118,13 +118,14 @@ export class LeashClient {
         account: this.account,
         chain: this.chain,
         gas: opts.gas,
+        type: "legacy",
       } as never);
     } else {
       const { request } = await this.publicClient.simulateContract({
         ...req,
         account: this.account,
       } as never);
-      hash = await this.walletClient.writeContract(request as never);
+      hash = await this.walletClient.writeContract({ ...request, type: "legacy" } as never);
     }
     const receipt = await this.publicClient.waitForTransactionReceipt({ hash });
     return { hash, status: receipt.status, url: this.txUrl(hash), receipt };
