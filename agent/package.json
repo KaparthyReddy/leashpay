@@ -1,0 +1,25 @@
+{
+  "name": "@leashpay/agent",
+  "version": "0.1.0",
+  "description": "Local Ollama payables agent for LeashPay",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "status": "tsx src/cli.ts status",
+    "watch": "tsx src/cli.ts watch",
+    "pay": "tsx src/cli.ts pay"
+  },
+  "dependencies": {
+    "@leashpay/sdk": "*",
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "leashpay",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "sdk",
+    "agent"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck -w sdk && npm run typecheck -w agent",
+    "test": "npm test -w sdk && npm test -w agent"
+  }
+}
