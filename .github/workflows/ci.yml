@@ -1,0 +1,42 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: foundry-rs/foundry-toolchain@v1
+      - name: Install libraries if missing
+        working-directory: contracts
+        run: |
+          if [ ! -d lib/forge-std/src ] || [ ! -d lib/openzeppelin-contracts/contracts ]; then
+            forge install foundry-rs/forge-std openzeppelin/openzeppelin-contracts@v5.0.2
+          fi
+      - name: Build
+        working-directory: contracts
+        run: forge build
+      - name: Test
+        working-directory: contracts
+        run: forge test -vv
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build -w web
+        env:
+          VITE_VAULT_ADDRESS: "0x81faaad38c95ef074f5df51a07c3d875a4540bf2"
+          VITE_REGISTRY_ADDRESS: "0x25c255b8f752a081c454080e85ba0595ee5b11ca"
