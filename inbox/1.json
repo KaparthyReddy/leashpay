@@ -1,0 +1,5 @@
+{
+  "from": "billing@acme.studio",
+  "subject": "Invoice INV-0142: logo design, 50% deposit",
+  "body": "Hello, this is the deposit invoice for the logo design project agreed on 12 November. Thank you!"
+}

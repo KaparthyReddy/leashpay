@@ -1,0 +1,5 @@
+{
+  "from": "billing@acme.studio",
+  "subject": "Oversized invoice above the per-tx cap",
+  "body": "Oversized invoice above the per-tx cap"
+}

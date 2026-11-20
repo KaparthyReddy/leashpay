@@ -1,0 +1,5 @@
+{
+  "from": "billing@acme.studio",
+  "subject": "Small invoice while paused",
+  "body": "Small invoice while paused"
+}
